@@ -1,17 +1,37 @@
-/* Actualiza la ruta de la imagen en el Hero */
+/* 1. DEFINICIÓN DE COLORES (¡Vital para que funcione!) */
+:root {
+    --negro-dojo: #1a1a1a;
+    --rojo-shinto: #b32d2e;
+    --blanco-papel: #f9f9f9;
+    --fuente-principal: 'Noto Sans JP', sans-serif; /* Estilo japonés */
+}
+
+/* 2. RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--blanco-papel);
+    color: var(--negro-dojo);
+    line-height: 1.6;
+}
+
+/* 3. TU BLOQUE ACTUALIZADO (El que me pasaste) */
 .hero {
     height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    /* Aquí usamos tu nueva foto */
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
                 url('fondo.jpg') center/cover no-repeat;
     color: white;
 }
 
-/* Estilo para resaltar la clase de adultos y los horarios */
 .time-list {
     list-style: none;
     margin-top: 15px;
@@ -30,7 +50,7 @@
 }
 
 .adult-class {
-    background-color: #fff5f5;
+    background-color: #fff5f5; /* Resalta la clase de adultos */
     border-radius: 5px;
     font-weight: bold;
 }
@@ -39,6 +59,7 @@
     color: var(--rojo-shinto);
     font-size: 1.2rem;
     margin-bottom: 2rem;
+    font-weight: bold;
 }
 
 .cta-social a {
@@ -46,8 +67,13 @@
     color: #555;
     font-size: 0.9rem;
     font-weight: bold;
+    transition: 0.3s;
 }
 
 .cta-social a:hover {
     color: var(--rojo-shinto);
 }
+
+/* Resto de estilos necesarios para el layout... */
+nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; }
+.main-logo { height: 60px; }

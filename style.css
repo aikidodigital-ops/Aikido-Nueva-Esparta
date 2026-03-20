@@ -1,12 +1,15 @@
-/* 1. DEFINICIÓN DE COLORES (¡Vital para que funcione!) */
+/* =========================================
+   ESTILO ZEN - DOJO NUEVA ESPARTA
+   ========================================= */
+
 :root {
-    --negro-dojo: #1a1a1a;
+    --negro-dojo: #121212;
     --rojo-shinto: #b32d2e;
-    --blanco-papel: #f9f9f9;
-    --fuente-principal: 'Noto Sans JP', sans-serif; /* Estilo japonés */
+    --gris-claro: #f4f4f4;
+    --blanco-puro: #ffffff;
+    --fuente-titulos: 'Noto Sans JP', sans-serif;
 }
 
-/* 2. RESET BÁSICO */
 * {
     margin: 0;
     padding: 0;
@@ -14,66 +17,162 @@
 }
 
 body {
-    font-family: var(--fuente-principal);
-    background-color: var(--blanco-papel);
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--blanco-puro);
     color: var(--negro-dojo);
-    line-height: 1.6;
+    line-height: 1.8;
 }
 
-/* 3. TU BLOQUE ACTUALIZADO (El que me pasaste) */
-.hero {
-    height: 80vh;
+/* --- CONTENEDOR MAESTRO (Evita que el texto pegue a los bordes) --- */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- NAVEGACIÓN ELEGANTE --- */
+header {
+    background: var(--blanco-puro);
+    padding: 15px 0;
+    border-bottom: 3px solid var(--negro-dojo);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+}
+
+.main-logo {
+    height: 70px; /* Tamaño controlado para que no rompa el diseño */
+    width: auto;
+    transition: transform 0.3s;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--negro-dojo);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+/* --- HERO SECTION (LA PORTADA) --- */
+.hero {
+    height: 90vh;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
                 url('fondo.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     color: white;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+/* --- BOTÓN PREMIUM (CTA) --- */
+.cta-button {
+    display: inline-block;
+    background-color: var(--rojo-shinto);
+    color: white;
+    padding: 18px 35px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 2px; /* Estilo cuadrado más tradicional */
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(179, 45, 46, 0.3);
+}
+
+.cta-button:hover {
+    background-color: var(--negro-dojo);
+    transform: translateY(-3px);
+}
+
+/* --- SECCIÓN AFILIACIÓN --- */
+.afiliacion {
+    padding: 40px 0;
+    text-align: center;
+    background: var(--gris-claro);
+}
+
+.logo-afiliado {
+    height: 100px;
+    margin: 15px 0;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
+}
+
+/* --- HORARIOS (ESTILO TARJETA) --- */
+.section-padding {
+    padding: 100px 0;
+}
+
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.day-card {
+    background: white;
+    padding: 40px;
+    border: 1px solid #eee;
+    border-left: 5px solid var(--rojo-shinto);
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.02);
 }
 
 .time-list {
     list-style: none;
-    margin-top: 15px;
-    padding: 0;
+    margin-top: 20px;
 }
 
 .time-list li {
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.time-list li span {
-    font-weight: bold;
-    color: var(--rojo-shinto);
-    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
 }
 
 .adult-class {
-    background-color: #fff5f5; /* Resalta la clase de adultos */
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-.promo-text {
     color: var(--rojo-shinto);
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
     font-weight: bold;
 }
 
-.cta-social a {
-    text-decoration: none;
-    color: #555;
-    font-size: 0.9rem;
-    font-weight: bold;
-    transition: 0.3s;
+/* --- CONTACTO --- */
+form {
+    max-width: 600px;
+    margin: 40px auto;
 }
 
-.cta-social a:hover {
-    color: var(--rojo-shinto);
+input, textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    background: #fafafa;
 }
 
-/* Resto de estilos necesarios para el layout... */
-nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; }
-.main-logo { height: 60px; }
+footer {
+    background: var(--negro-dojo);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}

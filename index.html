@@ -27,7 +27,7 @@
 
         /* Ajuste de la sección HERO con la imagen del atardecer */
         .hero-gradient {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('image-1.png');
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('image-1.jpg');
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
@@ -156,14 +156,13 @@
             <div>
                 <h2 class="text-4xl font-bold mb-6 border-b-4 border-red-700 inline-block">¿Quiénes Somos?</h2>
                 <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                    En Aikido Dojo Nueva Esparta, brindamos un espacio dedicado a la práctica del Aikido tradicional, fundado bajo los principios de Morihei Ueshiba. Aquí no buscamos la derrota del adversario, sino la victoria sobre uno mismo y la resolución pacífica de conflictos.
+                    En **Aikido Dojo Nueva Esparta**, brindamos un espacio dedicado a la práctica del Aikido tradicional, fundado bajo los principios de Morihei Ueshiba. Aquí no buscamos la derrota del adversario, sino la victoria sobre uno mismo y la resolución pacífica de conflictos.
                 </p>
                 <p class="text-lg text-gray-700 leading-relaxed">
                     Ubicados en el estado Nueva Esparta, contamos con instructores certificados comprometidos con la enseñanza de este arte, brindando un ambiente de respeto, disciplina y camaradería para todas las edades.
                 </p>
             </div>
             <div class="bg-gray-100 rounded-lg overflow-hidden shadow-2xl flex items-center justify-center">
-                <!-- Se ha sustituido la imagen por grupo.jpg -->
                 <img src="grupo.jpg" alt="Foto del grupo del Dojo" class="object-cover w-full h-full">
             </div>
         </div>
@@ -248,9 +247,9 @@
     <footer class="bg-black text-white py-12 px-4 text-center">
         <h3 class="text-xl font-bold tracking-widest mb-6">Aikido Dojo Nueva Esparta</h3>
         <div class="mb-8 flex justify-center space-x-6">
-            <span class="hover:text-red-500 cursor-pointer transition">Instagram</span>
-            <span class="hover:text-red-500 cursor-pointer transition">Facebook</span>
-            <span class="hover:text-red-500 cursor-pointer transition">WhatsApp</span>
+            <a href="https://www.instagram.com/aikido.nuevaesparta/" target="_blank" class="hover:text-red-500 transition">Instagram</a>
+            <a href="https://www.google.com/maps/place/Escuela+de+Aikido+-+Dojo+Nueva+Esparta+-+Aikikai+N.E./@11.0345329,-63.8691479,17z/" target="_blank" class="hover:text-red-500 transition">Ubicación (Maps)</a>
+            <a href="https://wa.me/584123585427" target="_blank" class="hover:text-red-500 transition">WhatsApp</a>
         </div>
         <p class="text-zinc-500 text-sm italic">"La verdadera victoria es la victoria sobre uno mismo."</p>
         <p class="text-zinc-600 text-xs mt-4 font-light">&copy; 2024 Aikido Dojo Nueva Esparta - Isla de Margarita, Venezuela.</p>
@@ -279,9 +278,8 @@
             card.classList.toggle('is-flipped');
         });
 
-        // Cambiar a la siguiente trivia (Corregido)
+        // Cambiar a la siguiente trivia
         function nextTrivia() {
-            // Reiniciar estado visual y volteo
             card.style.opacity = '0';
             card.classList.remove('is-flipped');
             
@@ -289,8 +287,6 @@
                 currentTriviaIndex = (currentTriviaIndex + 1) % triviaData.length;
                 qElem.innerText = triviaData[currentTriviaIndex].q;
                 aElem.innerText = triviaData[currentTriviaIndex].a;
-                
-                // Aplicar pequeña demora para asegurar que el texto cambió antes de mostrar
                 card.style.opacity = '1';
             }, 300);
         }

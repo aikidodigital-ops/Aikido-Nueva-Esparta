@@ -38,7 +38,7 @@
             justify-content: center;
         }
 
-        /* Contenedor del Logo Giratorio */
+        /* Contenedor del Logo Giratorio - Actualizado para efecto moneda */
         .logo-container {
             position: relative;
             width: 160px;
@@ -47,14 +47,16 @@
             perspective: 1000px;
             overflow: hidden;
             border-radius: 50%;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
-            border: 3px solid rgba(255, 255, 255, 0.2);
-            background-color: white; 
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(255,255,255,0.2);
+            border: 4px solid #d4af37; /* Borde dorado */
+            /* Degradado radial para simular metal en lugar de blanco liso */
+            background: radial-gradient(circle, #ffffff 0%, #e5e7eb 70%, #d1d5db 100%); 
         }
 
         .logo-spinning {
-            width: 100%;
-            height: 100%;
+            width: 90%; /* Un poco más pequeño para que respire dentro del borde */
+            height: 90%;
+            margin: 5%;
             border-radius: 50%;
             object-fit: contain;
             animation: coin-flip 8s linear infinite;
@@ -71,7 +73,7 @@
             background: linear-gradient(
                 to right,
                 rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.5) 50%,
+                rgba(255, 255, 255, 0.6) 50%,
                 rgba(255, 255, 255, 0) 100%
             );
             transform: rotate(30deg);
@@ -188,7 +190,7 @@
     <!-- Sección Hero -->
     <header id="inicio" class="hero-gradient h-[90vh] text-center text-white px-4">
         <div class="max-w-4xl">
-            <!-- Logo giratorio -->
+            <!-- Logo giratorio actualizado -->
             <div class="logo-container">
                 <img src="logo-dojo.png" alt="Logo del Dojo" class="logo-spinning">
             </div>
@@ -201,7 +203,7 @@
         </div>
     </header>
 
-    <!-- Sección Nosotros Actualizada -->
+    <!-- Sección Nosotros -->
     <section id="nosotros" class="py-20 max-w-6xl mx-auto px-4">
         <div class="grid md:grid-cols-2 gap-12 items-start">
             <div>

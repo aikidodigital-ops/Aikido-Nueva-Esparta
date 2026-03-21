@@ -27,7 +27,7 @@
 
         /* Ajuste de la sección HERO con la imagen del atardecer */
         .hero-gradient {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('image-1.png');
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('image-1.jpg');
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
@@ -36,55 +36,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        /* Estilos para el Logo Giratorio y Brillante */
-        .logo-container {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 2rem;
-            perspective: 1000px;
-            overflow: hidden;
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(255,215,0,0.3);
-        }
-
-        .logo-spinning {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            animation: coin-flip 6s linear infinite;
-        }
-
-        /* Efecto de Brillo (Shine) */
-        .logo-container::after {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -150%;
-            width: 100%;
-            height: 200%;
-            background: linear-gradient(
-                to right,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.4) 50%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            transform: rotate(30deg);
-            animation: shine 4s infinite;
-        }
-
-        @keyframes coin-flip {
-            0% { transform: rotateY(0deg); }
-            100% { transform: rotateY(360deg); }
-        }
-
-        @keyframes shine {
-            0% { left: -150%; }
-            20% { left: 150%; }
-            100% { left: 150%; }
         }
 
         /* Animación de giro de la tarjeta de Trivia */
@@ -176,7 +127,7 @@
                 <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center">
                     <span class="text-white font-bold text-xl">合</span>
                 </div>
-                <span class="text-xl font-bold tracking-widest uppercase text-zinc-800 text-sm md:text-base">Aikido Dojo Nueva Esparta</span>
+                <span class="text-xl font-bold tracking-widest uppercase text-zinc-800">Aikido Dojo Nueva Esparta</span>
             </div>
             <div class="hidden md:flex space-x-8 font-medium">
                 <a href="#inicio" class="nav-link">Inicio</a>
@@ -191,11 +142,6 @@
     <!-- Sección Hero -->
     <header id="inicio" class="hero-gradient h-[85vh] text-center text-white px-4">
         <div class="max-w-4xl">
-            <!-- Logo Animado -->
-            <div class="logo-container">
-                <img src="logo-dojo.png" alt="Logo del Dojo" class="logo-spinning">
-            </div>
-            
             <h1 class="text-5xl md:text-7xl font-bold mb-4 drop-shadow-2xl uppercase tracking-wider">El Camino de la Armonía</h1>
             <p class="text-xl md:text-2xl font-light max-w-2xl mx-auto mb-8 drop-shadow-lg text-white">
                 Un arte marcial basado en la no-resistencia y el desarrollo del espíritu en la Isla de Margarita.
@@ -204,52 +150,159 @@
         </div>
     </header>
 
-    <!-- Sección Nosotros (ACTUALIZADA) -->
-    <section id="nosotros" class="py-24 max-w-7xl mx-auto px-4">
-        <div class="grid lg:grid-cols-2 gap-16 items-start">
-            <div class="space-y-8">
-                <div>
-                    <h2 class="text-red-700 font-bold tracking-[0.2em] uppercase text-sm mb-2">Forjando Carácter, No Solo Técnicas</h2>
-                    <h3 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight">
-                        Domina el arte de la resolución, <span class="text-red-800">conquista tu mente.</span>
-                    </h3>
+    <!-- Sección Nosotros -->
+    <section id="nosotros" class="py-20 max-w-6xl mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-red-700 inline-block">¿Quiénes Somos?</h2>
+                <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                    En **Aikido Dojo Nueva Esparta**, brindamos un espacio dedicado a la práctica del Aikido tradicional, fundado bajo los principios de Morihei Ueshiba. Aquí no buscamos la derrota del adversario, sino la victoria sobre uno mismo y la resolución pacífica de conflictos.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    Ubicados en el estado Nueva Esparta, contamos con instructores certificados comprometidos con la enseñanza de este arte, brindando un ambiente de respeto, disciplina y camaradería para todas las edades.
+                </p>
+            </div>
+            <div class="bg-gray-100 rounded-lg overflow-hidden shadow-2xl flex items-center justify-center">
+                <img src="grupo.jpg" alt="Foto del grupo del Dojo" class="object-cover w-full h-full">
+            </div>
+        </div>
+    </section>
+
+    <!-- Educación sobre Aikido -->
+    <section id="aprende" class="py-20 bg-zinc-900 text-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-12 text-center uppercase tracking-widest">Conceptos Clave</h2>
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="p-8 border border-zinc-700 rounded-xl hover:border-red-700 transition duration-500">
+                    <h3 class="text-2xl font-bold mb-4 text-red-500">Ai (合)</h3>
+                    <p class="text-zinc-400">Armonía, unión o integración. El principio de mezclarse con la energía del oponente en lugar de chocar contra ella.</p>
                 </div>
-                
-                <p class="text-lg text-zinc-700 leading-relaxed">
-                    En Aikido Dojo Nueva Esparta, no entrenamos para la guerra, sino para la maestría personal. Siguiendo el legado puro de Morihei Ueshiba, somos el epicentro de la disciplina en la isla. Aquí, el tatami es el laboratorio donde transformas el conflicto en resolución y el caos en control.
-                </p>
+                <div class="p-8 border border-zinc-700 rounded-xl hover:border-red-700 transition duration-500">
+                    <h3 class="text-2xl font-bold mb-4 text-red-500">Ki (気)</h3>
+                    <p class="text-zinc-400">Energía vital o espíritu universal. La fuerza que fluye a través de todos los seres y que aprendemos a dirigir con calma.</p>
+                </div>
+                <div class="p-8 border border-zinc-700 rounded-xl hover:border-red-700 transition duration-500">
+                    <h3 class="text-2xl font-bold mb-4 text-red-500">Do (道)</h3>
+                    <p class="text-zinc-400">El camino o sendero. La práctica del Aikido entendida como una vía de perfeccionamiento humano, físico y moral.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <p class="text-lg text-zinc-700 leading-relaxed">
-                    No buscamos vencer a un oponente; buscamos que tú domines tus límites. Bajo la guía de instructores certificados, te ofrecemos un entorno de élite donde el respeto y la camaradería son los pilares de tu evolución.
-                </p>
-
-                <!-- Pilares de Autoridad -->
-                <div class="space-y-6 pt-4">
-                    <div class="flex items-start gap-4">
-                        <div class="bg-zinc-100 p-3 rounded-lg text-red-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-xl text-zinc-900">Linaje Tradicional</h4>
-                            <p class="text-zinc-600">Instrucción fiel a los principios de Morihei Ueshiba.</p>
-                        </div>
+    <!-- Trivia Interactiva -->
+    <section id="trivia" class="py-20 bg-gray-100">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-4">Trivia Interactiva</h2>
+            <p class="text-gray-600 mb-10">Pon a prueba tus conocimientos. Haz clic en la tarjeta para ver la respuesta.</p>
+            
+            <div class="card-container mx-auto mb-10">
+                <div class="card-inner" id="triviaCard">
+                    <div class="card-front">
+                        <p id="triviaQuestion" class="text-2xl font-medium">¿Quién es el fundador del Aikido?</p>
                     </div>
-
-                    <div class="flex items-start gap-4">
-                        <div class="bg-zinc-100 p-3 rounded-lg text-red-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-xl text-zinc-900">Certificación de Élite</h4>
-                            <p class="text-zinc-600">Instructores avalados con trayectoria comprobada.</p>
-                        </div>
+                    <div class="card-back">
+                        <p id="triviaAnswer" class="text-xl italic text-red-800 font-bold">Morihei Ueshiba, también conocido como O-Sensei.</p>
                     </div>
+                </div>
+            </div>
 
-                    <div class="flex items-start gap-4">
-                        <div class="bg-zinc-100 p-3 rounded-lg text-red-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-
+            <button onclick="nextTrivia()" class="bg-black text-white px-10 py-3 rounded-full hover:bg-red-700 transition shadow-lg font-bold uppercase tracking-tighter">
+                Siguiente Dato Curioso
+            </button>
+        </div>
+    </section>
+
+    <!-- Horarios -->
+    <section id="horarios" class="py-20 max-w-6xl mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-12 text-center border-b-2 border-zinc-200 pb-4">Nuestros Horarios</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="schedule-card p-6 bg-white rounded-lg shadow">
+                <h3 class="font-bold text-xl mb-2">Lunes / Miércoles</h3>
+                <p class="text-red-700 font-bold">Principiantes</p>
+                <p class="mt-2 text-sm text-zinc-600">18:00 - 19:30</p>
+                <p class="text-xs text-gray-400 mt-4 italic">Enfoque en caídas (Ukemi) y posturas básicas.</p>
+            </div>
+            <div class="schedule-card p-6 bg-white rounded-lg shadow">
+                <h3 class="font-bold text-xl mb-2">Martes / Jueves</h3>
+                <p class="text-red-700 font-bold">Avanzados</p>
+                <p class="mt-2 text-sm text-zinc-600">19:00 - 20:30</p>
+                <p class="text-xs text-gray-400 mt-4 italic">Técnicas con armas (Bukiwaza) y Jidori.</p>
+            </div>
+            <div class="schedule-card p-6 bg-white rounded-lg shadow">
+                <h3 class="font-bold text-xl mb-2">Viernes</h3>
+                <p class="text-red-700 font-bold">Práctica Libre</p>
+                <p class="mt-2 text-sm text-zinc-600">18:30 - 20:00</p>
+                <p class="text-xs text-gray-400 mt-4 italic">Práctica supervisada para todos los niveles.</p>
+            </div>
+            <div class="schedule-card p-6 bg-white rounded-lg shadow">
+                <h3 class="font-bold text-xl mb-2">Sábados</h3>
+                <p class="text-red-700 font-bold">Aikido Infantil</p>
+                <p class="mt-2 text-sm text-zinc-600">10:00 - 11:30</p>
+                <p class="text-xs text-gray-400 mt-4 italic">Formación de carácter y disciplina lúdica.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer class="bg-black text-white py-12 px-4 text-center">
+        <h3 class="text-xl font-bold tracking-widest mb-6">Aikido Dojo Nueva Esparta</h3>
+        <div class="mb-8 flex justify-center space-x-6">
+            <a href="https://www.instagram.com/aikido.nuevaesparta/" target="_blank" class="hover:text-red-500 transition">Instagram</a>
+            <a href="https://www.google.com/maps/place/Escuela+de+Aikido+-+Dojo+Nueva+Esparta+-+Aikikai+N.E./@11.0345329,-63.8691479,17z/" target="_blank" class="hover:text-red-500 transition">Ubicación (Maps)</a>
+            <a href="https://wa.me/584123585427" target="_blank" class="hover:text-red-500 transition">WhatsApp</a>
+        </div>
+        <p class="text-zinc-500 text-sm italic">"La verdadera victoria es la victoria sobre uno mismo."</p>
+        <p class="text-zinc-600 text-xs mt-4 font-light">&copy; 2024 Aikido Dojo Nueva Esparta - Isla de Margarita, Venezuela.</p>
+    </footer>
+
+    <script>
+        const triviaData = [
+            { q: "¿Quién es el fundador del Aikido?", a: "Morihei Ueshiba, también conocido como O-Sensei." },
+            { q: "¿Qué significa 'Ukemi'?", a: "El arte de recibir la técnica y caer con seguridad sin lastimarse." },
+            { q: "¿En qué país se originó el Aikido?", a: "En Japón, a partir del Daito-ryu Aiki-jujutsu." },
+            { q: "¿Cómo se llama el uniforme de práctica?", a: "Keikogi (o simplemente Gi)." },
+            { q: "¿Qué representa la 'Hakama'?", a: "Representa las siete virtudes del Bushido (código del guerrero)." },
+            { q: "¿Cuál es la espada de madera usada en Aikido?", a: "Se llama Bokken." },
+            { q: "¿Qué es el 'Jo'?", a: "Es un bastón de madera, una de las armas fundamentales del entrenamiento." },
+            { q: "¿Qué significa 'Onegaishimasu'?", a: "Saludo formal inicial que significa 'por favor, practiquemos juntos'." },
+            { q: "¿Qué es el 'Dojo'?", a: "Literalmente 'el lugar del despertar', donde se busca el Camino." }
+        ];
+
+        let currentTriviaIndex = 0;
+        const card = document.getElementById('triviaCard');
+        const qElem = document.getElementById('triviaQuestion');
+        const aElem = document.getElementById('triviaAnswer');
+
+        // Voltear la tarjeta al hacer clic
+        card.addEventListener('click', () => {
+            card.classList.toggle('is-flipped');
+        });
+
+        // Cambiar a la siguiente trivia
+        function nextTrivia() {
+            card.style.opacity = '0';
+            card.classList.remove('is-flipped');
+            
+            setTimeout(() => {
+                currentTriviaIndex = (currentTriviaIndex + 1) % triviaData.length;
+                qElem.innerText = triviaData[currentTriviaIndex].q;
+                aElem.innerText = triviaData[currentTriviaIndex].a;
+                card.style.opacity = '1';
+            }, 300);
+        }
+
+        // Scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

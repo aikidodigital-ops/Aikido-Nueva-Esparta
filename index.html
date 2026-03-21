@@ -25,9 +25,9 @@
             font-family: 'Cinzel', serif;
         }
 
-        /* Ajuste de la sección HERO con la imagen del atardecer */
+        /* Hero con imagen de fondo PNG */
         .hero-gradient {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('image-1.jpg');
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('image-1.png');
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
@@ -38,7 +38,58 @@
             justify-content: center;
         }
 
-        /* Animación de giro de la tarjeta de Trivia */
+        /* Contenedor del Logo Giratorio */
+        .logo-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 2rem;
+            perspective: 1000px;
+            overflow: hidden;
+            border-radius: 50%;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            background-color: white; 
+        }
+
+        .logo-spinning {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: contain;
+            animation: coin-flip 8s linear infinite;
+        }
+
+        /* Efecto de Brillo (Shine) */
+        .logo-container::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -150%;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.5) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            animation: shine 5s infinite;
+        }
+
+        @keyframes coin-flip {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        @keyframes shine {
+            0% { left: -150%; }
+            20% { left: 150%; }
+            100% { left: 150%; }
+        }
+
+        /* Tarjeta de Trivia */
         .card-container {
             perspective: 1000px;
             width: 100%;
@@ -49,8 +100,7 @@
             position: relative;
             width: 100%;
             height: 100%;
-            text-align: center;
-            transition: transform 0.6s, opacity 0.3s, scale 0.3s;
+            transition: transform 0.6s;
             transform-style: preserve-3d;
             cursor: pointer;
         }
@@ -63,7 +113,6 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             display: flex;
             align-items: center;
@@ -86,7 +135,6 @@
             border: 2px solid var(--dojo-red);
         }
 
-        /* Estilo de tarjetas de horario */
         .schedule-card {
             transition: all 0.3s ease;
             border-left: 5px solid var(--dojo-red);
@@ -124,9 +172,7 @@
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center">
-                    <span class="text-white font-bold text-xl">合</span>
-                </div>
+                <img src="logo-aikikai.png" alt="Logo Aikikai" class="w-10 h-10 object-contain">
                 <span class="text-xl font-bold tracking-widest uppercase text-zinc-800">Aikido Dojo Nueva Esparta</span>
             </div>
             <div class="hidden md:flex space-x-8 font-medium">
@@ -140,8 +186,13 @@
     </nav>
 
     <!-- Sección Hero -->
-    <header id="inicio" class="hero-gradient h-[85vh] text-center text-white px-4">
+    <header id="inicio" class="hero-gradient h-[90vh] text-center text-white px-4">
         <div class="max-w-4xl">
+            <!-- Logo giratorio -->
+            <div class="logo-container">
+                <img src="logo-dojo.png" alt="Logo del Dojo" class="logo-spinning">
+            </div>
+
             <h1 class="text-5xl md:text-7xl font-bold mb-4 drop-shadow-2xl uppercase tracking-wider">El Camino de la Armonía</h1>
             <p class="text-xl md:text-2xl font-light max-w-2xl mx-auto mb-8 drop-shadow-lg text-white">
                 Un arte marcial basado en la no-resistencia y el desarrollo del espíritu en la Isla de Margarita.
@@ -156,19 +207,19 @@
             <div>
                 <h2 class="text-4xl font-bold mb-6 border-b-4 border-red-700 inline-block">¿Quiénes Somos?</h2>
                 <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                    En **Aikido Dojo Nueva Esparta**, brindamos un espacio dedicado a la práctica del Aikido tradicional, fundado bajo los principios de Morihei Ueshiba. Aquí no buscamos la derrota del adversario, sino la victoria sobre uno mismo y la resolución pacífica de conflictos.
+                    En <strong>Aikido Dojo Nueva Esparta</strong>, brindamos un espacio dedicado a la práctica del Aikido tradicional, fundado bajo los principios de Morihei Ueshiba. Aquí no buscamos la derrota del adversario, sino la victoria sobre uno mismo y la resolución pacífica de conflictos.
                 </p>
                 <p class="text-lg text-gray-700 leading-relaxed">
                     Ubicados en el estado Nueva Esparta, contamos con instructores certificados comprometidos con la enseñanza de este arte, brindando un ambiente de respeto, disciplina y camaradería para todas las edades.
                 </p>
             </div>
-            <div class="bg-gray-100 rounded-lg overflow-hidden shadow-2xl flex items-center justify-center">
+            <div class="bg-gray-100 rounded-lg overflow-hidden shadow-2xl">
                 <img src="grupo.jpg" alt="Foto del grupo del Dojo" class="object-cover w-full h-full">
             </div>
         </div>
     </section>
 
-    <!-- Educación sobre Aikido -->
+    <!-- Conceptos Clave -->
     <section id="aprende" class="py-20 bg-zinc-900 text-white">
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-4xl font-bold mb-12 text-center uppercase tracking-widest">Conceptos Clave</h2>
@@ -189,7 +240,7 @@
         </div>
     </section>
 
-    <!-- Trivia Interactiva -->
+    <!-- Trivia -->
     <section id="trivia" class="py-20 bg-gray-100">
         <div class="max-w-3xl mx-auto px-4 text-center">
             <h2 class="text-4xl font-bold mb-4">Trivia Interactiva</h2>
@@ -207,7 +258,7 @@
             </div>
 
             <button onclick="nextTrivia()" class="bg-black text-white px-10 py-3 rounded-full hover:bg-red-700 transition shadow-lg font-bold uppercase tracking-tighter">
-                Siguiente Dato Curioso
+                Siguiente Trivia
             </button>
         </div>
     </section>
@@ -248,7 +299,7 @@
         <h3 class="text-xl font-bold tracking-widest mb-6">Aikido Dojo Nueva Esparta</h3>
         <div class="mb-8 flex justify-center space-x-6">
             <a href="https://www.instagram.com/aikido.nuevaesparta/" target="_blank" class="hover:text-red-500 transition">Instagram</a>
-            <a href="https://www.google.com/maps/place/Escuela+de+Aikido+-+Dojo+Nueva+Esparta+-+Aikikai+N.E./@11.0345329,-63.8691479,17z/" target="_blank" class="hover:text-red-500 transition">Ubicación (Maps)</a>
+            <a href="https://www.google.com/maps/place/Escuela+de+Aikido+-+Dojo+Nueva+Esparta+-+Aikikai+N.E./" target="_blank" class="hover:text-red-500 transition">Ubicación</a>
             <a href="https://wa.me/584123585427" target="_blank" class="hover:text-red-500 transition">WhatsApp</a>
         </div>
         <p class="text-zinc-500 text-sm italic">"La verdadera victoria es la victoria sobre uno mismo."</p>
@@ -261,11 +312,8 @@
             { q: "¿Qué significa 'Ukemi'?", a: "El arte de recibir la técnica y caer con seguridad sin lastimarse." },
             { q: "¿En qué país se originó el Aikido?", a: "En Japón, a partir del Daito-ryu Aiki-jujutsu." },
             { q: "¿Cómo se llama el uniforme de práctica?", a: "Keikogi (o simplemente Gi)." },
-            { q: "¿Qué representa la 'Hakama'?", a: "Representa las siete virtudes del Bushido (código del guerrero)." },
-            { q: "¿Cuál es la espada de madera usada en Aikido?", a: "Se llama Bokken." },
-            { q: "¿Qué es el 'Jo'?", a: "Es un bastón de madera, una de las armas fundamentales del entrenamiento." },
-            { q: "¿Qué significa 'Onegaishimasu'?", a: "Saludo formal inicial que significa 'por favor, practiquemos juntos'." },
-            { q: "¿Qué es el 'Dojo'?", a: "Literalmente 'el lugar del despertar', donde se busca el Camino." }
+            { q: "¿Qué representa la 'Hakama'?", a: "Representa las siete virtudes del Bushido." },
+            { q: "¿Cuál es la espada de madera usada en Aikido?", a: "Se llama Bokken." }
         ];
 
         let currentTriviaIndex = 0;
@@ -273,16 +321,13 @@
         const qElem = document.getElementById('triviaQuestion');
         const aElem = document.getElementById('triviaAnswer');
 
-        // Voltear la tarjeta al hacer clic
         card.addEventListener('click', () => {
             card.classList.toggle('is-flipped');
         });
 
-        // Cambiar a la siguiente trivia
         function nextTrivia() {
             card.style.opacity = '0';
             card.classList.remove('is-flipped');
-            
             setTimeout(() => {
                 currentTriviaIndex = (currentTriviaIndex + 1) % triviaData.length;
                 qElem.innerText = triviaData[currentTriviaIndex].q;
@@ -291,15 +336,12 @@
             }, 300);
         }
 
-        // Scroll suave
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if(target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });

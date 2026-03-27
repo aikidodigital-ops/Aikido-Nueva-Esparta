@@ -148,6 +148,17 @@
             color: white;
         }
 
+        .schedule-card:hover .text-red-700,
+        .schedule-card:hover .text-gray-600,
+        .schedule-card:hover .text-gray-400,
+        .schedule-card:hover .text-zinc-600 {
+            color: #f0f0f0 !important;
+        }
+
+        .schedule-card:hover .text-red-700 {
+            color: #ffaaaa !important;
+        }
+
         .nav-link {
             position: relative;
         }
@@ -309,34 +320,59 @@
         </div>
     </section>
 
-    <!-- Horarios -->
+    <!-- Horarios actualizados según nueva programación -->
     <section id="horarios" class="py-20 max-w-6xl mx-auto px-4">
         <h2 class="text-4xl font-bold mb-12 text-center border-b-2 border-zinc-200 pb-4">Nuestros Horarios</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Lunes, Miércoles y Viernes: múltiples sesiones -->
             <div class="schedule-card p-6 bg-white rounded-lg shadow">
-                <h3 class="font-bold text-xl mb-2">Lunes / Miércoles</h3>
-                <p class="text-red-700 font-bold">Principiantes</p>
-                <p class="mt-2 text-sm text-zinc-600">18:00 - 19:30</p>
-                <p class="text-xs text-gray-400 mt-4 italic">Enfoque en caídas (Ukemi) y posturas básicas.</p>
+                <h3 class="font-bold text-xl mb-3">Lunes / Miércoles / Viernes</h3>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <p class="font-semibold text-red-700">3:00 PM - 4:00 PM</p>
+                        <p class="text-gray-700">Niños (7 a 11 años) · Iniciación lúdica</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-red-700">4:00 PM - 5:00 PM</p>
+                        <p class="text-gray-700">Jóvenes (13 a 17 años) · Desarrollo técnico</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-red-700">5:00 PM - 6:00 PM</p>
+                        <p class="text-gray-700">Clase General · Todos los niveles</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-red-700">6:00 PM - 7:00 PM</p>
+                        <p class="text-gray-700">Avanzados · Alta intensidad</p>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-400 mt-4 italic">Enfoque progresivo: ukemi, técnicas de proyección y trabajo con armas.</p>
             </div>
+
+            <!-- Martes y Jueves: Principiantes -->
             <div class="schedule-card p-6 bg-white rounded-lg shadow">
                 <h3 class="font-bold text-xl mb-2">Martes / Jueves</h3>
-                <p class="text-red-700 font-bold">Avanzados</p>
-                <p class="mt-2 text-sm text-zinc-600">19:00 - 20:30</p>
-                <p class="text-xs text-gray-400 mt-4 italic">Técnicas con armas (Bukiwaza) y Jiyuwaza/Randori.</p>
+                <p class="text-red-700 font-bold text-lg">Principiantes</p>
+                <p class="mt-2 text-sm text-gray-700 font-medium">5:00 PM - 6:00 PM</p>
+                <p class="text-sm text-gray-600 mt-3">Clase dedicada a quienes inician el camino. Fundamentos sólidos, postura, desplazamientos y caídas seguras.</p>
+                <p class="text-xs text-gray-400 mt-4 italic">Ambiente acogedor, ideal para nuevos estudiantes.</p>
             </div>
-            <div class="schedule-card p-6 bg-white rounded-lg shadow">
-                <h3 class="font-bold text-xl mb-2">Viernes</h3>
-                <p class="text-red-700 font-bold">Práctica Libre</p>
-                <p class="mt-2 text-sm text-zinc-600">18:30 - 20:00</p>
-                <p class="text-xs text-gray-400 mt-4 italic">Práctica supervisada para todos los niveles.</p>
-            </div>
+
+            <!-- Sábado: Adultos Mayores -->
             <div class="schedule-card p-6 bg-white rounded-lg shadow">
                 <h3 class="font-bold text-xl mb-2">Sábados</h3>
-                <p class="text-red-700 font-bold">Aikido Infantil</p>
-                <p class="mt-2 text-sm text-zinc-600">10:00 - 11:30</p>
-                <p class="text-xs text-gray-400 mt-4 italic">Formación de carácter y disciplina lúdica.</p>
+                <p class="text-red-700 font-bold">Adultos Mayores</p>
+                <p class="mt-2 text-sm text-gray-700 font-medium">10:00 AM - 11:30 AM</p>
+                <p class="text-sm text-gray-600 mt-3">Práctica suave, movilidad articular, respiración y principios de armonía. Adaptado para mantener vitalidad y bienestar.</p>
+                <p class="text-xs text-gray-400 mt-4 italic">Clase guiada con énfasis en salud y energía Ki.</p>
             </div>
+        </div>
+
+        <!-- Botón adicional hacia niños.html (mismo estilo que botones principales) -->
+        <div class="text-center mt-12">
+            <a href="niños.html" class="inline-block bg-red-800 hover:bg-black text-white px-10 py-4 rounded-full transition duration-300 font-bold uppercase tracking-wider shadow-lg text-lg">
+                🌟 Conoce la sección de Niños 🌟
+            </a>
+            <p class="text-sm text-gray-500 mt-3">Actividades especiales, valores y aprendizaje para los más pequeños</p>
         </div>
     </section>
 

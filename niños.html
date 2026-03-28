@@ -89,6 +89,7 @@
             background: linear-gradient(135deg, var(--primary-orange), #ff8c42);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 12px 20px -8px rgba(255,107,53,0.5);
+            display: inline-block;
         }
         .btn-cta:hover {
             transform: scale(1.1) rotate(-2deg);
@@ -226,7 +227,7 @@
     <div class="bubble-container" id="bubble-container"></div>
     <a href="index.html" class="back-btn font-bold shadow-xl">← Volver al Inicio</a>
 
-    <!-- HERO (NIÑOS) SIN IMAGEN -->
+    <!-- HERO (NIÑOS) - SIN IMAGEN -->
     <section class="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden bg-gradient-to-br from-[#002B5C] via-[#0f3b7a] to-[#1b4d8f] text-white">
         <div class="relative z-20 max-w-5xl mx-auto">
             <h1 class="text-5xl md:text-8xl mb-5 animate-bounce">¡Desbloquea tus Superpoderes de Samurái! 🥋✨</h1>
@@ -314,18 +315,26 @@
         </div>
     </section>
 
-    <!-- CTA FINAL -->
+    <!-- CTA FINAL: ENLACE A WHATSAPP -->
     <section id="cta" class="py-20 bg-white relative z-20 text-center">
         <div class="max-w-2xl mx-auto px-6">
             <h2 class="text-4xl font-bold text-slate-800 mb-4 kids-font">¿Tu hijo está listo para el desafío?</h2>
             <p class="text-xl text-slate-600 mb-8">Únete a la academia donde los niños se convierten en líderes resilientes.</p>
-            <button class="btn-cta text-white px-12 py-6 rounded-full text-3xl font-bold uppercase shadow-xl mb-4">🥋 RESERVA UNA CLASE GRATIS AHORA</button>
-            <div class="flex items-center justify-center text-red-600 font-bold animate-pulse"><span class="mr-2">🔥</span><span>Solo 5 cupos disponibles para esta semana</span></div>
+            <a href="https://wa.me/584123585427?text=¡Hola!%20Me%20gustaría%20recibir%20información%20sobre%20las%20clases%20de%20Aikido%20para%20niños%20y%20reservar%20una%20clase%20gratuita.%20Gracias."
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn-cta text-white px-12 py-6 rounded-full text-3xl font-bold uppercase shadow-xl mb-4 inline-block">
+                🥋 RESERVA UNA CLASE GRATIS AHORA
+            </a>
+            <div class="flex items-center justify-center text-red-600 font-bold animate-pulse">
+                <span class="mr-2">🔥</span>
+                <span>Solo 5 cupos disponibles para esta semana</span>
+            </div>
         </div>
     </section>
 
     <footer class="bg-slate-900 text-slate-400 py-8 text-center relative z-20">
-        <p>© 2025 Academia de Aikido Bushido Kids · Todos los derechos reservados · Mente y Espíritu Guerrero</p>
+        <p>© 2026 Dojo de Aikido Nueva Esparta · Todos los derechos reservados · Mente y Espíritu Guerrero</p>
     </footer>
 
     <script>
@@ -535,7 +544,6 @@
                 await swapTwoCups(rand1, rand2);
                 // pequeño retardo entre intercambios para seguimiento visual
                 await new Promise(r => setTimeout(r, 220));
-                // actualizar posición de la bolita si está visible? pero está oculta, solo mental tracking
                 if(s === steps-1) {
                     // último swap, restablecer mensaje
                 }

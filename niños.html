@@ -2,31 +2,38 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aikido Kids - Desbloquea tus Superpoderes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Aikido Kids - Desbloquea tus Superpoderes | Juegos Ninja</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
             --primary-orange: #FF6B35;
             --electric-blue: #004E92;
-            --oxford-grey: #334756;
-            --bg-dark: #000428;
+            --zen-blue: #0f2b5e;
+            --soft-white: #fef9f0;
         }
 
         body {
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
-            background: #f8fafc;
+            background: #eef2ff;
             scroll-behavior: smooth;
         }
 
-        h1, .kids-font {
+        h1, .kids-font, .bangers {
             font-family: 'Bangers', cursive;
             letter-spacing: 2px;
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.2);
         }
 
-        /* Burbujas Dinámicas */
+        /* BURBUJAS DINÁMICAS MEJORADAS */
         .bubble-container {
             position: fixed;
             top: 0;
@@ -34,408 +41,590 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 0;
+            z-index: 1;
+            overflow: hidden;
         }
 
         .bubble {
             position: absolute;
-            bottom: -100px;
-            background: rgba(0, 78, 146, 0.1);
+            bottom: -120px;
+            background: radial-gradient(circle, rgba(255,107,53,0.3) 0%, rgba(0,78,146,0.25) 100%);
             border-radius: 50%;
-            animation: rise var(--speed) infinite ease-in;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            animation: rise var(--speed) infinite ease-in-out;
+            opacity: 0.6;
         }
 
         @keyframes rise {
-            0% { transform: translateY(0) scale(1); opacity: 0; }
-            50% { opacity: 0.5; }
-            100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 0.4;
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(-50vh) scale(1.1);
+            }
+            100% {
+                transform: translateY(-120vh) scale(1.5);
+                opacity: 0;
+            }
         }
 
-        /* Estilos de Juegos */
+        /* Estilos generales de secciones */
+        .relative-z-20 {
+            position: relative;
+            z-index: 20;
+        }
+
         .game-card {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            backdrop-filter: blur(0px);
         }
-        .game-card:hover { transform: scale(1.02); }
+        .game-card:hover { transform: translateY(-8px); }
 
         .btn-cta {
-            background: var(--primary-orange);
+            background: linear-gradient(135deg, var(--primary-orange), #ff8c42);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 12px 20px -8px rgba(255,107,53,0.5);
         }
         .btn-cta:hover {
             transform: scale(1.1) rotate(-2deg);
             box-shadow: 0 15px 30px rgba(255, 107, 53, 0.4);
         }
 
-        /* Puzzle Grid */
+        /* Puzzle 3x3 */
         #puzzle-board {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 5px;
-            width: 240px;
+            gap: 6px;
+            width: 250px;
             margin: 0 auto;
+            background: #1e293b;
+            padding: 8px;
+            border-radius: 24px;
         }
         .puzzle-piece {
-            width: 75px;
-            height: 75px;
-            background: var(--electric-blue);
+            aspect-ratio: 1 / 1;
+            background: linear-gradient(145deg, #004E92, #002b5c);
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: grab;
-            font-weight: bold;
-            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 1.5rem;
+            border-radius: 16px;
+            transition: 0.1s linear;
+            box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2);
         }
+        .puzzle-piece:active { transform: scale(0.96);}
 
-        /* Tragamonedas */
+        /* TRAGAMONEDAS */
         .slot-machine {
             display: flex;
-            gap: 10px;
+            gap: 16px;
             justify-content: center;
-            font-size: 3rem;
-            background: #eee;
-            padding: 20px;
-            border-radius: 15px;
-            border: 4px solid var(--oxford-grey);
+            background: #2d3e50;
+            padding: 20px 16px;
+            border-radius: 40px;
+            border: 4px solid #ffb347;
+            box-shadow: inset 0 0 8px gold;
+        }
+        .slot-machine span {
+            background: #fef9e6;
+            font-size: 3.5rem;
+            padding: 10px 18px;
+            border-radius: 20px;
+            width: 85px;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1), 0 5px 0 #aa8e54;
         }
 
-        /* Vasos */
+        /* JUEGO DE VASOS (TRILE PROFESIONAL) */
+        .cup-game-area {
+            background: #f1f5f9;
+            border-radius: 48px;
+            padding: 1rem;
+        }
         .cup-container {
             display: flex;
-            justify-content: space-around;
-            height: 120px;
+            justify-content: space-evenly;
             align-items: flex-end;
+            gap: 1rem;
             position: relative;
+            min-height: 140px;
+            margin: 1rem 0;
         }
         .cup {
-            width: 60px;
-            height: 80px;
-            background: var(--primary-orange);
-            border-radius: 10px 10px 0 0;
+            width: 80px;
+            height: 100px;
+            background: linear-gradient(145deg, #FF6B35, #e85a2c);
+            border-radius: 20px 20px 12px 12px;
             cursor: pointer;
-            transition: transform 0.5s;
-            z-index: 2;
+            transition: transform 0.15s ease, box-shadow 0.2s;
+            box-shadow: 0 12px 12px -6px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 5;
+            border-bottom: 4px solid #b23c1a;
         }
-        .ball {
-            width: 20px;
-            height: 20px;
-            background: red;
+        .cup:active {
+            transform: scale(0.96);
+        }
+        .cup.shadow-highlight {
+            box-shadow: 0 0 0 3px gold, 0 12px 20px black;
+        }
+        .ball-visual {
+            width: 28px;
+            height: 28px;
+            background: radial-gradient(circle at 30% 30%, #ff4444, #aa0000);
             border-radius: 50%;
             position: absolute;
-            bottom: 0;
-            z-index: 1;
+            bottom: 8px;
+            left: 0;
+            transition: all 0.05s linear;
+            box-shadow: 0 2px 8px black;
+            z-index: 10;
+            pointer-events: none;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
         }
-
+        .cup.swap-animation {
+            transform: translateY(-8px) scale(1.02);
+            transition: 0.1s;
+        }
         .back-btn {
-            position: absolute;
+            position: fixed;
             top: 20px;
             left: 20px;
-            z-index: 50;
-            background: rgba(255,255,255,0.8);
-            padding: 8px 16px;
-            border-radius: 50px;
+            z-index: 999;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            padding: 10px 20px;
+            border-radius: 60px;
             text-decoration: none;
-            color: #333;
+            color: white;
             font-weight: bold;
-            transition: all 0.3s;
+            font-size: 1rem;
+            transition: all 0.2s;
+            border: 1px solid rgba(255,255,255,0.3);
         }
-        .back-btn:hover { background: #fff; transform: translateX(-5px); }
+        .back-btn:hover {
+            background: #FF6B35;
+            transform: translateX(-5px);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .cup { width: 70px; height: 88px; }
+            .slot-machine span { font-size: 2.2rem; width: 65px; }
+        }
     </style>
 </head>
 <body>
 
     <div class="bubble-container" id="bubble-container"></div>
-    <a href="index.html" class="back-btn">← Regresar</a>
+    <a href="index.html" class="back-btn font-bold shadow-xl">← Volver al Inicio</a>
 
-    <!-- HERO SECTION (KIDS) -->
-    <section class="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden bg-gradient-to-br from-blue-600 to-indigo-900 text-white">
-        <div class="relative z-10 max-w-4xl">
-            <h1 class="text-6xl md:text-8xl mb-6 animate-bounce">¡Desbloquea tus Superpoderes de Samurái! 🥋✨</h1>
-            <p class="text-xl md:text-2xl mb-8 opacity-90">Aprende Aikido con juegos épicos, haz amigos y vuélvete invencible.</p>
-            <a href="#cta" class="btn-cta inline-block px-10 py-5 rounded-full text-2xl font-bold kids-font tracking-wide">
-                ¡EMPEZAR MI AVENTURA!
+    <!-- HERO (NIÑOS) SIN IMAGEN -->
+    <section class="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden bg-gradient-to-br from-[#002B5C] via-[#0f3b7a] to-[#1b4d8f] text-white">
+        <div class="relative z-20 max-w-5xl mx-auto">
+            <h1 class="text-5xl md:text-8xl mb-5 animate-bounce">¡Desbloquea tus Superpoderes de Samurái! 🥋✨</h1>
+            <p class="text-xl md:text-3xl mb-8 font-bold opacity-95">Aprende Aikido con juegos épicos y vuélvete invencible.</p>
+            <a href="#cta" class="btn-cta inline-block px-10 py-5 rounded-full text-2xl font-bold kids-font tracking-wider text-white shadow-2xl">
+                🚀 ¡EMPEZAR MI AVENTURA!
             </a>
         </div>
     </section>
 
-    <!-- AUTHORITY SECTION (PARENTS) -->
-    <section class="py-20 bg-white relative z-10">
+    <!-- AUTORIDAD (PADRES) con imagen niño.jpg -->
+    <section class="py-20 bg-white relative z-20">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <div class="md:w-1/2">
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6 border-l-8 border-blue-900 pl-4">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-6 border-l-8 border-[#FF6B35] pl-4">
                         Arquitectura del Carácter: El Desarrollo Integral de su Hijo
                     </h2>
-                    <p class="text-lg text-slate-600 mb-6 leading-relaxed">
-                        Nuestras clases fusionan la psicomotricidad fina y gruesa con la disciplina tradicional japonesa, garantizando un crecimiento saludable y una mente equilibrada en un entorno seguro.
+                    <p class="text-lg text-slate-700 mb-6 leading-relaxed">
+                        Nuestras clases fusionan psicomotricidad fina y gruesa con disciplina tradicional japonesa. Garantizamos un crecimiento saludable, mente equilibrada y entorno seguro.
                     </p>
-                    <div class="bg-slate-50 p-6 rounded-xl border-t-4 border-blue-500 italic text-slate-700">
-                        "Los psicopedagogos recomiendan el Aikido como el complemento educativo esencial: una formación integral que une la diversión con la creación de adultos resilientes y saludables."
+                    <div class="bg-amber-50 p-6 rounded-xl border-l-4 border-amber-500 italic text-slate-700 shadow">
+                        ⭐ "Psicopedagogos recomiendan el Aikido como el complemento educativo esencial: une diversión con la creación de adultos resilientes y saludables."
                     </div>
                 </div>
                 <div class="md:w-1/2">
-                    <img src="https://via.placeholder.com/800x400?text=Clase+de+Aikido+Infantil" alt="Clase de Aikido" class="rounded-2xl shadow-2xl w-full">
+                    <img src="niño.jpg" alt="Alumno destacado Aikido infantil" class="rounded-2xl shadow-2xl w-full object-cover" style="max-height: 550px; object-fit: cover;" onerror="this.src='https://placehold.co/800x1000?text=Foto+Niño+Aikido'">
+                    <p class="text-xs text-center mt-2 text-gray-400">*Imagen referencial · Desarrollo real en clase</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- BENEFITS SECTION -->
-    <section class="py-20 bg-slate-900 text-white relative z-10">
+    <!-- BENEFICIOS ESTRATÉGICOS (orden priorizado) -->
+    <section class="py-20 bg-slate-900 text-white relative z-20">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12">Lo que los especialistas en salud infantil destacan:</h2>
+            <h2 class="text-3xl md:text-5xl font-bold mb-12">✨ Lo que los especialistas en salud infantil destacan ✨</h2>
             <div class="grid md:grid-cols-4 gap-8">
-                <div class="p-6 bg-slate-800 rounded-lg">
-                    <div class="text-4xl mb-4">🎯</div>
-                    <h3 class="font-bold text-xl mb-2">Disciplina y Enfoque</h3>
-                    <p class="text-slate-400">Transformamos la energía dispersa en atención plena.</p>
-                </div>
-                <div class="p-6 bg-slate-800 rounded-lg">
-                    <div class="text-4xl mb-4">🧘</div>
-                    <h3 class="font-bold text-xl mb-2">Autocontrol</h3>
-                    <p class="text-slate-400">Herramientas para la vida, no solo para el dojo.</p>
-                </div>
-                <div class="p-6 bg-slate-800 rounded-lg">
-                    <div class="text-4xl mb-4">🧍</div>
-                    <h3 class="font-bold text-xl mb-2">Postura y Salud</h3>
-                    <p class="text-slate-400">Corrección postural y desarrollo motor avanzado.</p>
-                </div>
-                <div class="p-6 bg-slate-800 rounded-lg">
-                    <div class="text-4xl mb-4">🤝</div>
-                    <h3 class="font-bold text-xl mb-2">Respeto y Empatía</h3>
-                    <p class="text-slate-400">Formamos líderes, no solo deportistas.</p>
-                </div>
+                <div class="p-6 bg-slate-800 rounded-2xl transition hover:scale-105"><div class="text-5xl mb-4">🧠🎯</div><h3 class="font-bold text-2xl mb-2">Atención y Enfoque</h3><p class="text-slate-300">Ideal para niños que piensan diferente (TDAH). Canalizamos energía en concentración.</p></div>
+                <div class="p-6 bg-slate-800 rounded-2xl transition hover:scale-105"><div class="text-5xl mb-4">⚔️🧘</div><h3 class="font-bold text-2xl mb-2">Disciplina y Carácter</h3><p class="text-slate-300">Perseverancia, respeto y esfuerzo constante dentro y fuera del dojo.</p></div>
+                <div class="p-6 bg-slate-800 rounded-2xl transition hover:scale-105"><div class="text-5xl mb-4">🕊️🤝</div><h3 class="font-bold text-2xl mb-2">Autocontrol y No Violencia</h3><p class="text-slate-300">Resolución de conflictos sin agresión, herramientas para la vida.</p></div>
+                <div class="p-6 bg-slate-800 rounded-2xl transition hover:scale-105"><div class="text-5xl mb-4">💪🧍</div><h3 class="font-bold text-2xl mb-2">Salud y Postura</h3><p class="text-slate-300">Desarrollo físico coordinado, corrección postural y motricidad avanzada.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- ZONA DE ENTRENAMIENTO NINJA -->
-    <section class="py-20 bg-blue-50 relative z-10">
+    <!-- ZONA DE ENTRENAMIENTO NINJA (3 JUEGOS) -->
+    <section class="py-20 bg-gradient-to-b from-blue-50 to-white relative z-20">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-5xl kids-font text-blue-900 mb-4">Zona de Entrenamiento Ninja</h2>
-            <p class="text-xl text-blue-700 mb-12">¡Supera estos retos para ganar tu primera insignia!</p>
-
-            <div class="grid lg:grid-cols-3 gap-8">
+            <h2 class="text-5xl kids-font text-blue-900 mb-3">⚡ Zona de Entrenamiento Ninja ⚡</h2>
+            <p class="text-xl text-blue-800 mb-12">¡Supera los retos, gana insignias y conviértete en guerrero legendario!</p>
+            <div class="grid lg:grid-cols-3 gap-10">
                 
-                <!-- JUEGO 1: PUZZLE -->
+                <!-- JUEGO 1: PUZZLE SAMURAI -->
                 <div class="game-card p-6 flex flex-col items-center">
-                    <h3 class="kids-font text-2xl mb-4">1. Puzzle Samurái</h3>
-                    <div id="puzzle-board">
-                        <!-- Generado por JS -->
-                    </div>
-                    <p class="mt-4 text-sm text-gray-500">Ordena los números para ganar.</p>
+                    <h3 class="kids-font text-3xl text-orange-600 mb-2">1. Puzzle Samurái</h3>
+                    <div id="puzzle-board"></div>
+                    <p class="mt-4 text-sm text-gray-600">🔁 Ordena los números del 1 al 8. ¡Vacío al final!</p>
                 </div>
 
-                <!-- JUEGO 2: TRAGAMONEDAS -->
-                <div class="game-card p-6 flex flex-col items-center justify-center">
-                    <h3 class="kids-font text-2xl mb-4">2. Tragamonedas de Poder</h3>
-                    <div class="slot-machine" id="slots">
-                        <span>❓</span><span>❓</span><span>❓</span>
-                    </div>
-                    <div id="slot-message" class="h-8 my-2 font-bold text-green-600"></div>
-                    <button onclick="playSlots()" class="bg-blue-600 text-white px-6 py-2 rounded-full font-bold hover:bg-blue-700 active:scale-95 transition">
-                        ¡GIRAR!
-                    </button>
-                </div>
-
-                <!-- JUEGO 3: BOLITA -->
+                <!-- JUEGO 2: TRAGAMONEDAS DE PODER -->
                 <div class="game-card p-6 flex flex-col items-center">
-                    <h3 class="kids-font text-2xl mb-4">3. ¿Dónde está la Bolita?</h3>
-                    <div class="cup-container w-full" id="cups-container">
-                        <div class="cup" onclick="checkCup(0)" id="cup-0"></div>
-                        <div class="cup" onclick="checkCup(1)" id="cup-1"></div>
-                        <div class="cup" onclick="checkCup(2)" id="cup-2"></div>
-                        <div class="ball" id="ninja-ball"></div>
-                    </div>
-                    <div id="cup-message" class="h-8 my-2 font-bold text-blue-600"></div>
-                    <button onclick="shuffleCups()" class="bg-orange-500 text-white px-6 py-2 rounded-full font-bold mt-4 hover:bg-orange-600 transition">
-                        ¡MEZCLAR VASOS!
-                    </button>
+                    <h3 class="kids-font text-3xl text-amber-700 mb-2">2. Tragamonedas Ninja</h3>
+                    <div class="slot-machine" id="slots"><span>⭐</span><span>⭐</span><span>⭐</span></div>
+                    <div id="slot-message" class="h-10 my-2 font-bold text-green-700 text-sm"></div>
+                    <button onclick="playSlots()" class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:scale-105 transition">🌀 ¡GIRAR PODER! 🌀</button>
                 </div>
 
+                <!-- JUEGO 3: VASOS Y BOLITA (TRILE PROFESIONAL) -->
+                <div class="game-card p-6 flex flex-col items-center cup-game-area">
+                    <h3 class="kids-font text-3xl text-red-700 mb-2">3. ¿Dónde está la Bolita?</h3>
+                    <div id="cup-game-wrapper" class="w-full">
+                        <div class="cup-container" id="cupContainer">
+                            <div class="cup" data-logical-id="0" id="cup-0"></div>
+                            <div class="cup" data-logical-id="1" id="cup-1"></div>
+                            <div class="cup" data-logical-id="2" id="cup-2"></div>
+                            <div id="ballVisual" class="ball-visual" style="display: none;"></div>
+                        </div>
+                    </div>
+                    <div id="cup-status-message" class="h-10 font-bold text-indigo-800 mt-2 text-sm"></div>
+                    <button id="shuffleCupsBtn" class="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-full font-bold mt-2 shadow-md transition-all active:scale-95">🎲 ¡MEZCLAR VASOS! 🎲</button>
+                    <p class="text-xs text-gray-500 mt-3">👀 Sigue la bolita mientras los vasos se intercambian en tiempo real.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CALL TO ACTION -->
-    <section id="cta" class="py-20 bg-white relative z-10 text-center">
+    <!-- CTA FINAL -->
+    <section id="cta" class="py-20 bg-white relative z-20 text-center">
         <div class="max-w-2xl mx-auto px-6">
             <h2 class="text-4xl font-bold text-slate-800 mb-4 kids-font">¿Tu hijo está listo para el desafío?</h2>
             <p class="text-xl text-slate-600 mb-8">Únete a la academia donde los niños se convierten en líderes resilientes.</p>
-            
-            <button class="btn-cta text-white px-12 py-6 rounded-full text-3xl font-bold uppercase shadow-xl mb-4">
-                RESERVA UNA CLASE GRATIS AHORA
-            </button>
-            
-            <div class="flex items-center justify-center text-red-600 font-bold animate-pulse">
-                <span class="mr-2">🔥</span>
-                <span>Solo 5 cupos disponibles para esta semana</span>
-            </div>
+            <button class="btn-cta text-white px-12 py-6 rounded-full text-3xl font-bold uppercase shadow-xl mb-4">🥋 RESERVA UNA CLASE GRATIS AHORA</button>
+            <div class="flex items-center justify-center text-red-600 font-bold animate-pulse"><span class="mr-2">🔥</span><span>Solo 5 cupos disponibles para esta semana</span></div>
         </div>
     </section>
 
-    <footer class="bg-slate-900 text-slate-500 py-10 text-center">
-        <p>&copy; 2025 Academia de Aikido Bushido Kids. Todos los derechos reservados.</p>
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center relative z-20">
+        <p>© 2025 Academia de Aikido Bushido Kids · Todos los derechos reservados · Mente y Espíritu Guerrero</p>
     </footer>
 
-    <!-- Audio Placeholders (Using Web Audio API) -->
     <script>
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        
+        // ---- AUDIO CONTEXT (sonidos) con desbloqueo automático al primer click ----
+        let audioCtx = null;
+        function initAudio() {
+            if (audioCtx) return;
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            audioCtx.resume();
+        }
         function playSound(type) {
+            if (!audioCtx) return;
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
             osc.connect(gain);
             gain.connect(audioCtx.destination);
-
             if(type === 'click') {
-                osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+                osc.frequency.value = 720;
                 gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
                 osc.start();
                 osc.stop(audioCtx.currentTime + 0.1);
             } else if(type === 'win') {
-                osc.frequency.setValueAtTime(523, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(1046, audioCtx.currentTime + 0.3);
+                osc.frequency.value = 523;
+                osc.frequency.exponentialRampToValueAtTime(1046, audioCtx.currentTime + 0.25);
                 gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
                 osc.start();
                 osc.stop(audioCtx.currentTime + 0.3);
-            } else if(type === 'wham') {
-                osc.type = 'square';
-                osc.frequency.setValueAtTime(100, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+            } else if(type === 'shuffle') {
+                osc.type = 'sine';
+                osc.frequency.value = 380;
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
                 osc.start();
-                osc.stop(audioCtx.currentTime + 0.2);
+                osc.stop(audioCtx.currentTime + 0.08);
+            } else {
+                osc.type = 'square';
+                osc.frequency.value = 220;
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.12);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.12);
             }
         }
+        function unlockAudioOnUserGesture() {
+            initAudio();
+            document.body.addEventListener('click', () => { if(audioCtx) audioCtx.resume(); }, { once: true });
+        }
+        unlockAudioOnUserGesture();
 
-        // Burbujas
-        const container = document.getElementById('bubble-container');
-        for (let i = 0; i < 20; i++) {
-            const b = document.createElement('div');
-            b.className = 'bubble';
-            const size = Math.random() * 50 + 20 + 'px';
-            b.style.width = size;
-            b.style.height = size;
-            b.style.left = Math.random() * 100 + '%';
-            b.style.setProperty('--speed', Math.random() * 5 + 5 + 's');
-            b.style.animationDelay = Math.random() * 5 + 's';
-            container.appendChild(b);
+        // ----- BURBUJAS MEJORADAS (fondo dinámico) -----
+        const bubbleContainer = document.getElementById('bubble-container');
+        for (let i = 0; i < 38; i++) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            const size = Math.random() * 60 + 20;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.left = Math.random() * 100 + '%';
+            bubble.style.animationDelay = Math.random() * 12 + 's';
+            bubble.style.setProperty('--speed', (Math.random() * 6 + 4) + 's');
+            bubble.style.background = `radial-gradient(circle, rgba(255,107,53,0.5) 0%, rgba(0,78,146,0.4) 100%)`;
+            bubbleContainer.appendChild(bubble);
         }
 
-        // Juego 1: Puzzle
-        const board = document.getElementById('puzzle-board');
-        let pieces = [1, 2, 3, 4, 5, 6, 7, 8, ''];
-        pieces = pieces.sort(() => Math.random() - 0.5);
-
+        // ---------- JUEGO 1: PUZZLE 3x3 ----------
+        let pieces = [1,2,3,4,5,6,7,8,''];
+        function shufflePuzzle() { pieces = pieces.sort(() => Math.random() - 0.5); renderPuzzle(); }
         function renderPuzzle() {
+            const board = document.getElementById('puzzle-board');
             board.innerHTML = '';
-            pieces.forEach((p, i) => {
+            pieces.forEach((val, idx) => {
                 const div = document.createElement('div');
                 div.className = 'puzzle-piece';
-                div.textContent = p;
-                if(p === '') div.style.background = '#ddd';
-                div.onclick = () => movePiece(i);
+                div.textContent = val === '' ? '✨' : val;
+                if(val === '') div.style.background = '#334155';
+                div.onclick = () => movePiece(idx);
                 board.appendChild(div);
             });
         }
-
         function movePiece(i) {
-            const empty = pieces.indexOf('');
-            const valid = [i-1, i+1, i-3, i+3];
-            if(valid.includes(empty)) {
-                [pieces[i], pieces[empty]] = [pieces[empty], pieces[i]];
+            const emptyIdx = pieces.indexOf('');
+            const validMoves = [i-1, i+1, i-3, i+3].filter(v => v >=0 && v < 9);
+            if(validMoves.includes(emptyIdx)) {
+                [pieces[i], pieces[emptyIdx]] = [pieces[emptyIdx], pieces[i]];
                 playSound('click');
                 renderPuzzle();
-                if(pieces.join('') === '12345678') {
-                    alert('¡Cinturón Negro conseguido!');
-                    playSound('win');
+                if(pieces.slice(0,8).join('') === '12345678') {
+                    setTimeout(() => { alert('🏆 ¡Cinturón Negro desbloqueado! 🏆'); playSound('win'); }, 50);
                 }
             }
         }
-        renderPuzzle();
+        shufflePuzzle();
 
-        // Juego 2: Tragamonedas
-        const icons = ['⭐', '🍒', '🍌', '🍋', '🍓'];
+        // ---------- JUEGO 2: TRAGAMONEDAS ----------
+        const slotIcons = ['⭐', '🍒', '⚡', '🍥', '🥋'];
         function playSlots() {
             playSound('click');
-            const slotElements = document.querySelectorAll('#slots span');
+            const slotsSpan = document.querySelectorAll('#slots span');
             const results = [];
-            document.getElementById('slot-message').textContent = 'Girando...';
-            
-            slotElements.forEach((el, i) => {
+            document.getElementById('slot-message').innerHTML = '<span class="animate-pulse">Girando chakra...</span>';
+            slotsSpan.forEach((el, idx) => {
                 setTimeout(() => {
-                    const res = icons[Math.floor(Math.random() * icons.length)];
-                    el.textContent = res;
-                    results.push(res);
-                    if(i === 2) {
+                    const rand = slotIcons[Math.floor(Math.random() * slotIcons.length)];
+                    el.textContent = rand;
+                    results[idx] = rand;
+                    if(idx === 2) {
                         if(results[0] === results[1] && results[1] === results[2]) {
-                            document.getElementById('slot-message').innerHTML = '<marquee>¡GANASTE UN RANGO NINJA!</marquee>';
+                            document.getElementById('slot-message').innerHTML = '🎉 ¡JACKPOT NINJA! Rango ascendido 🎉';
                             playSound('win');
                         } else {
-                            document.getElementById('slot-message').textContent = '¡Casi! Intenta otra vez';
+                            document.getElementById('slot-message').innerHTML = '🍃 Casi lo logras... ¡intenta otra vez!';
                         }
                     }
-                }, i * 200);
+                }, idx * 180);
             });
         }
 
-        // Juego 3: Vasos
-        let ballPosition = 1;
-        let isShuffling = false;
-
-        function shuffleCups() {
-            if(isShuffling) return;
-            isShuffling = true;
-            playSound('wham');
-            document.getElementById('cup-message').textContent = '¡Ojo de Águila! ¿Dónde quedó?';
-            ballPosition = Math.floor(Math.random() * 3);
-            
-            const ball = document.getElementById('ninja-ball');
-            ball.style.opacity = '0';
-            
-            // Animación simple de mezcla
-            const cups = [0,1,2];
-            let count = 0;
-            const interval = setInterval(() => {
-                const c1 = document.getElementById(`cup-${Math.floor(Math.random()*3)}`);
-                c1.style.transform = `translateX(${Math.random()*20 - 10}px)`;
-                count++;
-                if(count > 10) {
-                    clearInterval(interval);
-                    isShuffling = false;
-                    document.querySelectorAll('.cup').forEach(c => c.style.transform = 'translateY(0)');
-                }
-            }, 100);
+        // ---------- JUEGO 3: VASOS Y BOLITA (VERSIÓN PROFESIONAL con swaps reales y seguimiento visual) ----------
+        let cupElements = [];
+        let ballLogicalId = null;      // ID lógico (0,1,2) que tiene la bolita
+        let isShufflingActive = false;
+        let currentCupOrder = [0,1,2]; // mapeo visual: posiciones en DOM corresponden a logical ids (inicialmente orden natural)
+        const cupContainer = document.getElementById('cupContainer');
+        const ballVisual = document.getElementById('ballVisual');
+        const statusMsg = document.getElementById('cup-status-message');
+        
+        function initCups() {
+            cupElements = [
+                document.getElementById('cup-0'),
+                document.getElementById('cup-1'),
+                document.getElementById('cup-2')
+            ];
+            // asignar data-logical-id según índice inicial
+            cupElements.forEach((cup, idx) => {
+                cup.setAttribute('data-logical-id', idx);
+                cup.style.transition = 'transform 0.2s ease';
+            });
+            // posición aleatoria de la bolita
+            ballLogicalId = Math.floor(Math.random() * 3);
+            // ocultar la bola visualmente hasta que el jugador elija
+            ballVisual.style.display = 'none';
+            statusMsg.innerHTML = '✨ La bolita está bajo un vaso. ¡Mezcla y adivina! ✨';
         }
 
-        function checkCup(idx) {
-            if(isShuffling) return;
-            const cup = document.getElementById(`cup-${idx}`);
-            const ball = document.getElementById('ninja-ball');
-            
-            // Posicionar bolita bajo el vaso correcto antes de mostrar
-            const targetCup = document.getElementById(`cup-${ballPosition}`);
-            ball.style.left = (targetCup.offsetLeft + 20) + 'px';
-            ball.style.opacity = '1';
-            
-            cup.style.transform = 'translateY(-40px)';
-            
-            if(idx === ballPosition) {
-                document.getElementById('cup-message').textContent = '¡ENCONTRADO! Eres un maestro.';
-                playSound('win');
-            } else {
-                document.getElementById('cup-message').textContent = 'Sigue practicando tu enfoque...';
-                playSound('wham');
+        // actualiza la posición de la bolita (visual) debajo del vaso con ID lógico dado
+        function positionBallUnderCupByLogicalId(logicalId) {
+            const targetCup = cupElements.find(cup => parseInt(cup.getAttribute('data-logical-id')) === logicalId);
+            if (!targetCup) return;
+            const containerRect = cupContainer.getBoundingClientRect();
+            const cupRect = targetCup.getBoundingClientRect();
+            const leftRelative = cupRect.left - containerRect.left + (cupRect.width / 2) - 14;
+            const bottomRelative = cupRect.height - 12;
+            ballVisual.style.left = leftRelative + 'px';
+            ballVisual.style.bottom = bottomRelative + 'px';
+        }
+
+        // revela la bolita en el vaso actual (si está oculta)
+        function revealBall() {
+            const cupWithBall = cupElements.find(cup => parseInt(cup.getAttribute('data-logical-id')) === ballLogicalId);
+            if (cupWithBall) {
+                ballVisual.style.display = 'block';
+                positionBallUnderCupByLogicalId(ballLogicalId);
             }
-            
-            setTimeout(() => {
-                cup.style.transform = 'translateY(0)';
-            }, 1000);
         }
 
+        function hideBall() { ballVisual.style.display = 'none'; }
+
+        // Intercambio físico de posiciones en DOM + animación simple + intercambio de logical ids
+        async function swapTwoCups(idxA, idxB) {
+            if (idxA === idxB) return;
+            const cupA = cupElements[idxA];
+            const cupB = cupElements[idxB];
+            if (!cupA || !cupB) return;
+            // animación de salto
+            cupA.classList.add('swap-animation');
+            cupB.classList.add('swap-animation');
+            setTimeout(() => {
+                cupA.classList.remove('swap-animation');
+                cupB.classList.remove('swap-animation');
+            }, 150);
+            // Intercambiar los atributos data-logical-id
+            const logicalA = cupA.getAttribute('data-logical-id');
+            const logicalB = cupB.getAttribute('data-logical-id');
+            cupA.setAttribute('data-logical-id', logicalB);
+            cupB.setAttribute('data-logical-id', logicalA);
+            // Intercambiar físicamente en el DOM (reorden visual)
+            if (cupA.compareDocumentPosition(cupB) & Node.DOCUMENT_POSITION_FOLLOWING) {
+                cupContainer.insertBefore(cupB, cupA);
+            } else {
+                cupContainer.insertBefore(cupA, cupB);
+            }
+            // actualizar array cupElements
+            const newCupElements = Array.from(cupContainer.children).filter(el => el.classList && el.classList.contains('cup'));
+            cupElements = newCupElements;
+            // Si la bolita estaba en alguno de estos logical ids, actualizar estado (ballLogicalId no cambia porque sigue con el mismo logical id)
+            // solo se intercambian los logical ids en los vasos, la bolita permanece asociada al mismo número lógico
+        }
+
+        async function performFullShuffle(steps = 10) {
+            if (isShufflingActive) return;
+            isShufflingActive = true;
+            hideBall();
+            statusMsg.innerHTML = '🔄 ¡Mezclando vasos! ¡Sigue la bolita! 🔄';
+            playSound('shuffle');
+            for (let s = 0; s < steps; s++) {
+                const rand1 = Math.floor(Math.random() * 3);
+                let rand2 = Math.floor(Math.random() * 3);
+                while (rand2 === rand1) rand2 = Math.floor(Math.random() * 3);
+                await swapTwoCups(rand1, rand2);
+                // pequeño retardo entre intercambios para seguimiento visual
+                await new Promise(r => setTimeout(r, 220));
+                // actualizar posición de la bolita si está visible? pero está oculta, solo mental tracking
+                if(s === steps-1) {
+                    // último swap, restablecer mensaje
+                }
+            }
+            // después de mezcla, la bolita sigue en ballLogicalId (el mismo id lógico)
+            // Mostrar mensaje listo para adivinar
+            statusMsg.innerHTML = '🤔 ¿Dónde está la bolita? ¡Toca un vaso! 🤔';
+            isShufflingActive = false;
+            // Aseguramos que la bola esté oculta hasta adivinar
+            ballVisual.style.display = 'none';
+        }
+
+        // Cuando el usuario elige un vaso
+        function onCupClick(event) {
+            if (isShufflingActive) {
+                statusMsg.innerHTML = '⏳ Espera, los vasos aún se mezclan... observa con atención ⏳';
+                playSound('click');
+                return;
+            }
+            const cup = event.currentTarget;
+            const selectedLogicalId = parseInt(cup.getAttribute('data-logical-id'));
+            // Revelar la bolita bajo el vaso correcto
+            revealBall();
+            if (selectedLogicalId === ballLogicalId) {
+                statusMsg.innerHTML = '🎉 ¡ACERTASTE! ¡Eres un maestro ninja! 🎉';
+                playSound('win');
+                // Efecto visual extra
+                cup.classList.add('shadow-highlight');
+                setTimeout(() => cup.classList.remove('shadow-highlight'), 600);
+            } else {
+                // mostrar donde estaba realmente
+                const correctCupElem = cupElements.find(c => parseInt(c.getAttribute('data-logical-id')) === ballLogicalId);
+                if(correctCupElem) correctCupElem.classList.add('shadow-highlight');
+                statusMsg.innerHTML = `❌ Fallaste... la bolita estaba bajo otro vaso. ¡Sigue entrenando! ❌`;
+                playSound('wham');
+                setTimeout(() => {
+                    if(correctCupElem) correctCupElem.classList.remove('shadow-highlight');
+                }, 800);
+            }
+            // opcional: deshabilitar clicks por 1 segundo para evitar spam
+            const cupsDiv = document.querySelectorAll('.cup');
+            cupsDiv.forEach(c => c.style.pointerEvents = 'none');
+            setTimeout(() => {
+                cupsDiv.forEach(c => c.style.pointerEvents = 'auto');
+                // después de 2 segundos ocultamos la bolita de nuevo para nueva ronda? No, pero el siguiente shuffle la ocultará
+            }, 1200);
+        }
+
+        function resetAndShuffle() {
+            if (isShufflingActive) return;
+            // reordenar los vasos al orden inicial visual (índices 0,1,2)
+            const currentCupsOrder = cupElements;
+            const sortedByOriginal = [...currentCupsOrder].sort((a,b) => {
+                let idA = parseInt(a.getAttribute('data-logical-id'));
+                let idB = parseInt(b.getAttribute('data-logical-id'));
+                return idA - idB;
+            });
+            sortedByOriginal.forEach(cup => cupContainer.appendChild(cup));
+            cupElements = Array.from(cupContainer.children).filter(el => el.classList.contains('cup'));
+            // reiniciar logical ids a su posición natural
+            cupElements.forEach((cup, idx) => {
+                cup.setAttribute('data-logical-id', idx);
+            });
+            // nueva bolita aleatoria
+            ballLogicalId = Math.floor(Math.random() * 3);
+            hideBall();
+            // ejecutar mezcla real con muchos swaps
+            performFullShuffle(12);
+        }
+
+        // asignar eventos a los vasos
+        function bindCupEvents() {
+            document.querySelectorAll('.cup').forEach(cup => {
+                cup.removeEventListener('click', onCupClick);
+                cup.addEventListener('click', onCupClick);
+            });
+        }
+
+        initCups();
+        bindCupEvents();
+        const shuffleBtn = document.getElementById('shuffleCupsBtn');
+        shuffleBtn.addEventListener('click', () => {
+            initAudio();
+            if(audioCtx) audioCtx.resume();
+            resetAndShuffle();
+        });
+        // para que al inicio los vasos estén listos, hacemos una primera mezcla suave pero sin molestar? mejor que el usuario aprete el boton
+        statusMsg.innerHTML = '🎭 Presiona "MEZCLAR VASOS" para empezar y sigue la bolita 🎭';
+        hideBall();
     </script>
 </body>
 </html>

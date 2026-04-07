@@ -397,9 +397,29 @@
             bubbleContainer.appendChild(bubble);
         }
 
-        // ---------- JUEGO 1: PUZZLE 3x3 ----------
-        let pieces = [1,2,3,4,5,6,7,8,''];
-        function shufflePuzzle() { pieces = pieces.sort(() => Math.random() - 0.5); renderPuzzle(); }
+                // ---------- JUEGO 1: PUZZLE 3x3 (CORREGIDO) ----------
+        let pieces = [1, 2, 3, 4, 5, 6, 7, 8, ''];
+
+        function isSolvable(arr) {
+            let invitations = 0;
+            // Filtramos el vacío para contar solo los números
+            const nums = arr.filter(p => p !== '');
+            for (let i = 0; i < nums.length; i++) {
+                for (let j = i + 1; j < nums.length; j++) {
+                    if (nums[i] > nums[j]) invitations++;
+                }
+            }
+            // En un puzzle 3x3, es resoluble si el número de inversiones es par
+            return invitations % 2 === 0;
+        }
+
+        function shufflePuzzle() {
+            do {
+                pieces = pieces.sort(() => Math.random() - 0.5);
+            } while (!isSolvable(pieces)); // Repite hasta que sea resoluble
+            renderPuzzle();
+        }
+
         function renderPuzzle() {
             const board = document.getElementById('puzzle-board');
             board.innerHTML = '';
@@ -407,25 +427,38 @@
                 const div = document.createElement('div');
                 div.className = 'puzzle-piece';
                 div.textContent = val === '' ? '✨' : val;
-                if(val === '') div.style.background = '#334155';
+                if (val === '') div.style.background = '#334155';
                 div.onclick = () => movePiece(idx);
                 board.appendChild(div);
             });
         }
+
         function movePiece(i) {
             const emptyIdx = pieces.indexOf('');
-            const validMoves = [i-1, i+1, i-3, i+3].filter(v => v >=0 && v < 9);
-            if(validMoves.includes(emptyIdx)) {
+            const row = Math.floor(i / 3);
+            const col = i % 3;
+            const emptyRow = Math.floor(emptyIdx / 3);
+            const emptyCol = emptyIdx % 3;
+
+            // Verificación matemática de adyacencia (arriba, abajo, izquierda, derecha)
+            const isAdjacent = Math.abs(row - emptyRow) + Math.abs(col - emptyCol) === 1;
+
+            if (isAdjacent) {
                 [pieces[i], pieces[emptyIdx]] = [pieces[emptyIdx], pieces[i]];
                 playSound('click');
                 renderPuzzle();
-                if(pieces.slice(0,8).join('') === '12345678') {
-                    setTimeout(() => { alert('🏆 ¡Cinturón Negro desbloqueado! 🏆'); playSound('win'); }, 50);
+                
+                // Verificación de victoria mejorada
+                if (pieces.slice(0, 8).join('') === '12345678' && pieces[8] === '') {
+                    setTimeout(() => { 
+                        alert('🏆 ¡Cinturón Negro desbloqueado! 🏆'); 
+                        playSound('win'); 
+                    }, 100);
                 }
             }
         }
         shufflePuzzle();
-
+        
         // ---------- JUEGO 2: TRAGAMONEDAS ----------
         const slotIcons = ['⭐', '🍒', '⚡', '🍥', '🥋'];
         function playSlots() {
